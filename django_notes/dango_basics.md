@@ -16,3 +16,8 @@
 - Template is the interface a user looks at.
 ![Example Image](Django_MVT.png)
 - In many other frameworks, Template is referred as View and View is referred as Controller.
+
+### Localhost and Port
+- Localhost is IP address of own computer. It is 127.0.0.1, which refers to the current machine.
+- Port number is assigned for specific type of communication we are doing.
+- Ex- Port 80 in case of web traffic. Port 443 in case of secure web traffic (HTTPS).
