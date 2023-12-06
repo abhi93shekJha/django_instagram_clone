@@ -30,3 +30,13 @@
 - A group of resources can work on an app independently in a large project.
 - We can reuse the same app in a different project. Ex- An authentication system can be reused.
 - We can customize an existing specific app.
+
+### Models in Django (python manage.py makemigrations [your_app_name])  (python manage.py migrate)
+- We use Django ORM to interact with databases.
+- ORM - Object-Relational Mapping. It provides a way for developers to interact with any database using Python language.
+- So, if it is mysql or postgres, we will have to use same syntax to interact with the database.
+- It improves the development time.
+- It takes care of almost all the CRUD cases. However, for executing complex queries we may have to write the query itself.
+- Joins become really easy using class objects using shell (Django ORM provides interactive command line interface (shell) to perform CRUD to the tables using objects and methods, it is very much developer friendly).
+- When doing migrate using (python manage.py migrate), Django checks for the models that are newly created with the existing tables, if the model not present as table, it creates new tables under the hood.
+- Django performs all the queries under the hood hidden from us providing us a clean interface using ORM.
