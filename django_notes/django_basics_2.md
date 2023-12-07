@@ -8,4 +8,9 @@
 - We will have to create a template folder inside app that keeps html files.
 - Floder structure should be template/app_name/html_file.html (notice here the app_name folder inside template directory).
 - This keeps away conflit among multiple templates present as projects grow bigger.
-- 
+- Just like template, we keep static files inside static folder inside an app, static/app_name/css/style.css.
+- We run command "python manage.py collectstatic" to move all the static assets from all the apps to staticfiles location.
+- This command keeps all the assets from all the apps to a single location (staticfiles).
+- To run the above command we need to specify 'staticfiles' location in settings.py script of the project. (STATIC_ROOT = BASE_DIR / 'staticfiles')
+- This is helpful when we run our server in production environment, it uses this location.
+- Also, it helps in caching, let's say any static content is changed on the server, when we run the above command, it gets reflected in the 'staticfiles', and this new version of the file has some change that is noticed by the client, which then updates the cache to render this new content.
