@@ -1,0 +1,17 @@
+{% extends "../base.html" %}
+
+{% load static %}
+
+{% block title %} My Child Home Page {%endblock%}
+
+{% block header%} Child Header {%endblock%}
+
+{% block content%}
+    <p>Below is the list of users registered!!</p>
+    {% for user in data %}
+        <div>{{user.created_on}} {{user.name}} {{user.email}} {{user.password}}</div>
+    {%endfor%}
+    
+{%endblock%}
+
+{% block footer %} Child Footer {%endblock%}

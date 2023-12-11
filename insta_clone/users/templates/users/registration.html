@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
+</head>
+<body>
+    <div class="registration-container">
+        <img src="{% static 'users/images/instagram_logo.png' %}" alt="Logo">
+        <h2>Registration</h2>
+        <form method="post", action="/users/register/">
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+                <div class="label"> "{{ field.label }}" </div>
+                <div>{{field}}</div>
+                <div>{{field.errors}}</div>
+            {% endfor %}
+        
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>
