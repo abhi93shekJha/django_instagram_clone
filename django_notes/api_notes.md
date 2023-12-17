@@ -15,3 +15,7 @@ class Meta:
 - We will have to add only few lines of code in views.py to convert request data to respective model class, validate the data and save the data. It also helps create error object by itself. Shown in the codebase.
 - We should always save hashed password to the database.
 - When we do serializer_object.save() after serializer_object.is_valid(), then create(self, validate_data) method of Subclass of ModelSerializer class is called, which we can override to modify model's data before saving it to db. See in codebase.
+
+### Authentication vs Authorization
+- Authentication is verification of a user when entering a system (ex. login).
+- Authorization is validation of what resources and apps a user is authorised to use.
