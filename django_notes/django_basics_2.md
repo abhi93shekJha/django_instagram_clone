@@ -30,4 +30,4 @@
 
 ### Miscelleneous
 - python manage.py migrate your_app_name zero
-- Above line unapplies all the migration.
+- Above line unapplies all the migrations.
