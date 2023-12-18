@@ -22,7 +22,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     # the below line will append the BASE_DIR from setting.py and use the path to go to users.urls file.
-    path('users/', include('users.urls'))
+    path('users/', include('users.urls')),
     # for request http://127.0.0.1:8000, to move to users.urls
     # path('', include('users.urls'))
+    path('apis/', include('create_apis.urls')),
 ]

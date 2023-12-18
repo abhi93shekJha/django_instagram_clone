@@ -54,3 +54,4 @@ def register(request):
         'message': message
     }
     return render(request, 'users/registration.html', context)
+
