@@ -27,3 +27,7 @@
 - This may lead to unintended actions being performed on user's behalf (unauthorized trasaction, data updation, deletion etc.).
 - To help prevent this, server keeps csrf token for a session and when any form is submitted this token is also send in the request.
 - This token is then matched with existing token on the server, if matched then only server makes the submission valid otherwise rejects.
+
+### Miscelleneous
+- python manage.py migrate your_app_name zero
+- Above line unapplies all the migrations.
