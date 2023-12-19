@@ -49,3 +49,23 @@ urlpatterns = [
     ...
 ]
 ```
+- Code to add decorators and their importance to make it mandatory for an api to send token in header
+```python
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+@api_view(['GET'])
+@authentication_classes([JWTAuthentication])   # enables authentication of the user, fills the request.user variable (Anonymous if token not send, otherwise username associated with the user)
+@permission_classes([IsAuthenticated])    # makes it mandatory for an api to send token in header
+
+def get_all_users(request):
+    all_profile = UserProfile.objects.all()
+    
+    print("User name: - " + str(request.user))
+    
+    # converts it back to json
+    user_profile_serializer = UserViewSerializer(instance=all_profile, many=True)
+    
+    return Response(user_profile_serializer.data, status=status.HTTP_200_OK)
+```
