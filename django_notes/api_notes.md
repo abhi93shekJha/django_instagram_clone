@@ -15,6 +15,20 @@ class Meta:
 - We will have to add only few lines of code in views.py to convert request data to respective model class, validate the data and save the data. It also helps create error object by itself. Shown in the codebase.
 - We should always save hashed password to the database.
 - When we do serializer_object.save() after serializer_object.is_valid(), then create(self, validate_data) method of Subclass of ModelSerializer class is called, which we can override to modify model's data before saving it to db. See in codebase.
+- We can use a json inside a json, by keeping a serializer inside a serializer shown in code below.
+```python
+class UserViewSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'date_joined', )
+
+class UserProfileViewSerializer(ModelSerializer):
+    user = UserViewSerializer()   # this line creates an inside json
+    class Meta:
+        model = UserProfile
+        # this will give all the field except what is excluded
+        exclude = ('is_verified',) 
+```
 
 ### Authentication vs Authorization
 - Authentication is verification of a user when entering a system (ex. login).
