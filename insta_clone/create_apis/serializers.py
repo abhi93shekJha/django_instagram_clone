@@ -16,3 +16,19 @@ class UserCreateSerializer(ModelSerializer):
         fields = ('username', 'password', 'email', )
         
         # fields, include, exclude
+        
+class UserViewSerializer(ModelSerializer):
+    
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'date_joined', )        
+        
+class UserProfileViewSerializer(ModelSerializer):
+    
+    user = UserViewSerializer()     # this object creates a json inside the outer json
+    
+    class Meta:
+        model = UserProfile
+        # this will give all the field except what is excluded
+        exclude = ('is_verified',)
+        
