@@ -19,3 +19,4 @@ class Meta:
 ### Authentication vs Authorization
 - Authentication is verification of a user when entering a system (ex. login).
 - Authorization is verification of what resources and apps a user is authorised to use.
+
