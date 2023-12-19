@@ -38,3 +38,14 @@ urlpatterns = [
     ...
 ]
 ```
+- To now add login endpoint, we will have to simply add only below lines in project's urls.py.
+- Note here this is possible because we used the User Model provided by djang.contrib.auth.models package.
+- This links our login api to the same User model under the hood.
+- It accepts username and password and sends back refresh token and access token in response to be sent as header in subsequent apis.
+```python
+urlpatterns = [
+    ...
+    path('login/', TokenObtainPairView.as_view(), name='login_api'),
+    ...
+]
+```
