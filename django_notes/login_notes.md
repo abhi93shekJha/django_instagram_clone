@@ -57,7 +57,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 @api_view(['GET'])
-@authentication_classes([JWTAuthentication])   # enables authentication of the user, fills the request.user variable (Anonymous if token not send, otherwise username associated with the user)
+@authentication_classes([JWTAuthentication])   # enables authentication of the user, fills the request.user variable (Anonymous_user if token not send, otherwise username associated with the user)
 @permission_classes([IsAuthenticated])    # makes it mandatory for an api to send token in header
 
 def get_all_users(request):
