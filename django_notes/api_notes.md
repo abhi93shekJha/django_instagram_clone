@@ -7,16 +7,18 @@ class Meta:
     abstract = True
 ```
 - Adding above line makes the outer class abstract for django models.
-- This tells django to not include this class when creating tables out of models.
+- This tells django to not include this class when creating tables out of models (when migrating).
 
 ### ModelSerializer
 - A class that helps us remove code, "to take post data from request object, create a model field using that data and save the model".
+- Simply put, it is an easy way to save coming request json data to table (first converting it to model) and vice-versa(converting model object to json when sending back the response).
 - We create a serializers.py and create Serializer classes for the models to be used. Shown in the codebase.
 - We will have to add only few lines of code in views.py to convert request data to respective model class, validate the data and save the data. It also helps create error object by itself. Shown in the codebase.
 - We should always save hashed password to the database.
 - When we do serializer_object.save() after serializer_object.is_valid(), then create(self, validate_data) method of Subclass of ModelSerializer class is called, which we can override to modify model's data before saving it to db. See in codebase.
-- We can use a json inside a json, by keeping a serializer inside a serializer shown in code below.
+- We can use a json inside a json, by keeping a serializer inside a serializer shown in the code below.
 ```python
+from rest_framework.serializers import ModelSerializer
 class UserViewSerializer(ModelSerializer):
     class Meta:
         model = User
