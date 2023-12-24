@@ -13,7 +13,7 @@
 - This command keeps all the assets from all the apps to a single location ('staticfiles').
 - To run the above command we need to specify 'staticfiles' location in settings.py script of the project. (STATIC_ROOT = BASE_DIR / 'staticfiles')
 - This is helpful when we run our server in production environment, it uses this location.
-- Also, it helps in caching, let's say any static content is changed on the server, when we run the above command, it gets reflected in the 'staticfiles', and this new version of the file has some change that is noticed by the client, which then updates the cache to render this new content.
+- Also, it helps in caching, let's say any static content is changed on the server, when we run the above command, it gets reflected in the 'staticfiles', and this new version of the file has some change that is noticed by the client, which then updates the cache on client(browsers) to render this new content.
 
 
 ### Creating form on Django (Post request):
