@@ -20,7 +20,7 @@
 - We create a forms.py file in our app dirctory.
 - We use ModelForm class for creating form inside forms.py.
 - Inside html, inside form tag, we use 'action' (here we set which url is called when the form is submitted) and we use 'method' ('POST', 'GET' etc.).
-### CSRC token (Cross-site Request Forgery)
+### CSRF token (Cross-site Request Forgery)
 - We use "{% csrf_token %}" inside form tag.
 - CSRF - Cross-Site Request Forgery, When a user is already authenticated on a website, he won't be asked again to login if he comes back to the website.
 - An attacker may send a tempting link via email or sms to the user, that will allow user to submit information to the website without them knowing (and since the user is already logged in).
