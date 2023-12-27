@@ -29,7 +29,7 @@ class UserProfileViewSerializer(ModelSerializer):
     class Meta:
         model = UserProfile
         # this will give all the field except what is excluded
-        exclude = ('is_verified',) 
+        exclude = ('is_verified',)
 ```
 
 ### Authentication vs Authorization
@@ -61,6 +61,19 @@ def get_user(request, pk=None):
 - update() method is overidden in writing Serializer class. We receive instance object and validated_data dictionary. Look at "UserProfileUpdateSerializer" serializer class in code.
 - update() is called when the serializer is saved (save()) after validation (is_valid()).
 - We can create fields inside serializer even if the fields are not present in the Model linked with serializer. See code for more understanding. (we user serializers.Charfield (from rest_framework import serializers)
+- A code snippet relate to model below:
+```python
+class UserProfile(AbstractTimeStamp):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=False, related_name = 'profile')
+# above code 'related_name' field will add a profile object inside the User model. It's like both the tables UserProfile and User have id of each other.
+```
+### Difference between PUT and POST
+- POST is used for creating rows, PUT is used for updating existing rows/or creating if the row does not exists.
+- The request payload for POST generally contains only data that needs to be created, where for PUT all the data is sent along with the updated field.
+- PATCH is also for updation but only updated data is sent unlike PUT where all the data is sent in request payload.
+- PUT is idempotent, meaning multiple requests with same payload should produce only one result, where POST creates multiple results.
+- All the above things have to be implemented using logic, these are only conventions that are followed at all the places. Meaning it is not logically incorrect to both update using POST and create using POST but not accepted conventionally.
+### GET and DELETE
+- Similarly GET is used for read only single or multiple rows. Multiple requests should return same results (idempotancy).
+- DELETE should always delete a row.
 
-### Difference between GET, PUT, POST and DELETE
-### PUT is idempotent, learn it
