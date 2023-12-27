@@ -30,6 +30,8 @@ class UserProfileViewSerializer(ModelSerializer):
         model = UserProfile
         # this will give all the field except what is excluded
         exclude = ('is_verified',)
+
+# the field's name should be same when passing in request payload. It is same as created in Model :)
 ```
 
 ### Authentication vs Authorization
@@ -76,4 +78,8 @@ class UserProfile(AbstractTimeStamp):
 ### GET and DELETE
 - Similarly GET is used for read only single or multiple rows. Multiple requests should return same results (idempotancy).
 - DELETE should always delete a row.
-
+### Steps to update profile pic
+- In settings.py of the project add (MEDIA_ROOT = BASE_DIR / 'media' and MEDIA_URL = '')
+- Create an empty folder 'media' in the project root directory (similar to 'staticfiles' folder).
+- Use ImageField in model. Specify upload_to arguement, it contains path inside MEDIA_ROOT to save the images.
+- Install pillow using "pip install pillow". Django uses pillow internally (for ImageField actually).
