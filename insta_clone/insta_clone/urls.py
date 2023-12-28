@@ -21,6 +21,8 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from rest_framework_simplejwt.views import TokenVerifyView
+from django.conf import settings
+from django.conf.urls.static import static
 
 # Always use '/' after url name(not before), if used anywhere else it may have consequences later
 # Django goes to the list of urlpatterns one by one for searching and enters into the apps urls in the same sequence
@@ -42,3 +44,7 @@ urlpatterns = [
     # It expects username and password and sends back refresh token and access token
     path('login/', TokenObtainPairView.as_view(), name='login_api'),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

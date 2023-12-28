@@ -12,10 +12,8 @@ class AbstractTimeStamp(models.Model):
 
 class UserProfile(AbstractTimeStamp):
     
-    DEFAULT_PROFILE_PIC_URL = 'https://mywebsite.com/placeholder.png'
-    
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=False)
-    profile_pic_url = models.CharField(max_length=255, default=DEFAULT_PROFILE_PIC_URL)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=False, related_name = 'profile')
+    profile_pic_url = models.ImageField(upload_to='profile_pic/', blank=True)
     
     bio = models.CharField(max_length=255, blank=True)
     is_verified = models.BooleanField(default=True)

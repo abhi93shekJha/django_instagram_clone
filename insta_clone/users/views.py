@@ -9,7 +9,7 @@ def index(request):
     # this object contains the information about the request,
     # a web browser sends these information,
     # or we send it from postman
-    
+
     # http://127.0.0.1:8000/users/index/?q1=Ak&q2=Kumar%20Jha
     # %20 for space
 

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UserCreateSerializer, UserProfileViewSerializer
+from .serializers import UserCreateSerializer, UserProfileViewSerializer, UserProfileUpdateSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import UserProfile
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -55,3 +55,53 @@ def get_all_users(request):
     user_profile_serializer = UserProfileViewSerializer(instance=all_profile, many=True)
     
     return Response(user_profile_serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
+def get_user(request, id=None):
+    
+    user_profile = UserProfile.objects.filter(id=id).first()
+    
+    response_data = {
+        "data":None,
+        "error":None
+    }
+    status_code = ""
+    
+    if user_profile:
+        serializer = UserProfileViewSerializer(instance=user_profile)
+        response_data["data"] = serializer.data
+        status_code = status.HTTP_200_OK
+    else:
+        response_data['error'] = "User does not exist!!"   
+        status_code = status.HTTP_404_NOT_FOUND
+    
+    return Response(response_data, status=status_code)
+
+
+@api_view(['PUT'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
+def update_profile(request):
+    
+    user_profile_serializer = UserProfileUpdateSerializer(data=request.data, instance=request.user.profile)
+    
+    response_data = {
+        "data":None,
+        "error":None
+    }
+    status_code = ""
+    
+    if user_profile_serializer.is_valid():
+        # print(user_profile_serializer.data)
+        # the below line will call the update method in serializer.
+        user_profile = user_profile_serializer.save()
+        response_data["data"] = UserProfileViewSerializer(instance=user_profile).data
+        status_code = status.HTTP_200_OK
+    else:
+        response_data["error"] = user_profile_serializer.errors
+        status_code = status.HTTP_404_NOT_FOUND
+    
+    return Response(response_data, status_code)
