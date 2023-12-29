@@ -123,3 +123,8 @@ def f(instance, filename):
 
 image = models.ImageField('Image', upload_to=f, validators=[validate_image])
 ```
+### Class based views
+- We can simply create a class with get, post, put and delete methods (whichever necessary).
+- It subclasses APIView class, no need to add Authentication related annotations at multiple places. We have to add it only at one place.
+- Need to specify only one URL in urls.py.
+- [See here for code emaple](insta_clone/create_apis/views.py)
