@@ -7,6 +7,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .models import UserProfile
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -105,3 +107,66 @@ def update_profile(request):
         status_code = status.HTTP_404_NOT_FOUND
     
     return Response(response_data, status_code)
+
+
+class UserProfileDetail(APIView):
+    
+    permission_classes = [IsAuthenticated, ]
+    authentication_classes = [JWTAuthentication, ]
+    
+    def get(self, request, id):
+        
+        user_profile = UserProfile.objects.filter(id=id).first()
+    
+        response_data = {
+            "data":None,
+            "error":None
+        }
+        status_code = ""
+        
+        if user_profile:
+            serializer = UserProfileViewSerializer(instance=user_profile)
+            response_data["data"] = serializer.data
+            status_code = status.HTTP_200_OK
+        else:
+            response_data['error'] = "User does not exist!!"   
+            status_code = status.HTTP_404_NOT_FOUND
+        
+        return Response(response_data, status=status_code)
+    
+    
+    def post(self, request, id):
+        
+        user_profile_serializer = UserProfileUpdateSerializer(data=request.data, instance=request.user.profile)
+    
+        response_data = {
+            "data":None,
+            "error":None
+        }
+        status_code = ""
+        
+        if user_profile_serializer.is_valid():
+            # print(user_profile_serializer.data)
+            # the below line will call the update method in serializer.
+            user_profile = user_profile_serializer.save()
+            response_data["data"] = UserProfileViewSerializer(instance=user_profile).data
+            status_code = status.HTTP_200_OK
+        else:
+            response_data["error"] = user_profile_serializer.errors
+            status_code = status.HTTP_404_NOT_FOUND
+        
+        return Response(response_data, status_code)
+        
+    
+    def delete(self, request, id):
+        
+        user = User.objects.filter(id=id)
+        user.delete()
+        
+        response = {
+            "data":None,
+            "message": "User data deleted successfully!!"
+        }
+        
+        return Response(response, status=status.HTTP_200_OK)
+    
