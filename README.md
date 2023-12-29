@@ -1,4 +1,4 @@
-# Django Instagram Clone
+# Django Instagram Clone ([Notes link](django_notes/dango_basics.md))
 
 ## Overview
 
@@ -7,10 +7,12 @@ Welcome to the Django Instagram Clone project! This project is designed to showc
 ### Server Side Rendering
 
 - Utilizes Django forms created using HTML and CSS.
+- [Notes link](django_notes/django_forms_ServerSideRendering.md)
 
 ### Django Rest Framework (DRF) Application
 
 - Implements DRF for enhanced functionality.
+- [Notes link](django_notes/api_notes.md)
 
 ### User Authentication
 
