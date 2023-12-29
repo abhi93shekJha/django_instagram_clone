@@ -1,5 +1,7 @@
 # Django Instagram Clone ([Notes link](django_notes/dango_basics.md))
 
+### All the notes are written in simple terms for better explaination.
+
 ## Overview
 
 Welcome to the Django Instagram Clone project! This project is designed to showcase the following features:
