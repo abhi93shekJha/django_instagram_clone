@@ -16,6 +16,7 @@ Welcome to the Django Instagram Clone project! This project is designed to showc
 
 - Provides user registration and login functionalities.
 - Utilizes JSON Web Token (JWT) authentication for secure user authentication.
+- [Notes link](django_notes/login_notes.md)
 
 ### User Data Management
 
