@@ -36,4 +36,11 @@ class NetworkEdge(AbstractTimeStamp):
 - You can think of it as a lookup table.
 - Just like we can get UserProfiles using NetworkEdge instance, related_name helps to refer back to NetworkEdge model using UserProfile instance.
 - so, user_profile_model.followings.all() will give us all the NetworkEdge rows which user is following. With ".to_user" we can get all the followings.
-- Similarly user_profile_model.followers.all() will give us all NetworkEdge rows which is following the user. With ".from_user" we can get all the followers.  
+- Similarly user_profile_model.followers.all() will give us all NetworkEdge rows which is following the user. With ".from_user" we can get all the followers.
+
+### Using Mixin for creating views
+- Mixin is a useful tool for better organising code and removing redundant code.
+- It provide smaller code for applying very basic GET, POST, PUT and DELETE operations. It performs most of the operations under the hood, providing us with a clean interface.
+- With few tweaks in the code, we can easy implement CRUD for more complex cases.
+- To make use of mixing, we subclass from generics.GenericAPIView which internally subclasses from APIView class.
+- [See the usage here.](https://github.com/abhi93shekJha/django_instagram_clone/blob/master/insta_clone/create_apis/views.py)
