@@ -37,7 +37,17 @@ class NetworkEdge(AbstractTimeStamp):
 - Just like we can get UserProfiles using NetworkEdge instance, related_name helps to refer back to NetworkEdge model using UserProfile instance.
 - so, user_profile_model.followings.all() will give us all the NetworkEdge rows which user is following. With ".to_user" we can get all the followings.
 - Similarly user_profile_model.followers.all() will give us all NetworkEdge rows which is following the user. With ".from_user" we can get all the followers.
-
+### Next steps:
+- We will have to add unique contraint on both the columns in NetworkEdge model.
+- We will add below code for this.
+```python
+class NetworkEdge(AbstractTimeStamp):
+    from_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name = "followings"
+    to_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name = "followers")
+    class Meta:
+        unique_together = ('from_user', 'to_user')
+```
+- [Rest of the logic can be found in the code here.](https://github.com/abhi93shekJha/django_instagram_clone/blob/master/insta_clone/create_apis/views.py)
 ### Using Mixin for creating views
 - Mixin is a useful tool for better organising code and removing redundant code.
 - It provide smaller code for applying very basic GET, POST, PUT and DELETE operations. It performs most of the operations under the hood, providing us with a clean interface.
