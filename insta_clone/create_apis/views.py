@@ -2,13 +2,14 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UserCreateSerializer, UserProfileViewSerializer, UserProfileUpdateSerializer
+from .serializers import UserCreateSerializer, UserProfileViewSerializer, UserProfileUpdateSerializer, NetworkEdgeSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import UserProfile
+from .models import UserProfile, NetworkEdge
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
+from rest_framework import generics, mixins
 
 # Create your views here.
 
@@ -169,4 +170,24 @@ class UserProfileDetail(APIView):
         }
         
         return Response(response, status=status.HTTP_200_OK)
+
+
+class UserNetworkEdgeView(mixins.CreateModelMixin, generics.GenericAPIView):
+    
+    queryset = NetworkEdge.objects.all()    # this is the model we will be dealing with only
+    serializer_class = NetworkEdgeSerializer    # and the serializer we are suppose be deal with only
+    
+    permission_classes = [IsAuthenticated, ]
+    authentication_classes = [JWTAuthentication, ]
+    
+    def get(self, request):
+        pass
+    
+    # below post will simply create and save a network model    
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+    
+    def delete(self, request):
+        pass
+    
     

@@ -14,6 +14,8 @@ urlpatterns = [
     # for updating existing user
     path('update_profile/', views.update_profile, name="update_profile"),
     
-    path('<int:id>/', views.UserProfileDetail.as_view(), name="user_profile_detail")
+    path('<int:id>/', views.UserProfileDetail.as_view(), name="user_profile_detail"),
+    
+    path('edge/', views.UserNetworkEdgeView.as_view(), name="network_edge")
 ]
 
