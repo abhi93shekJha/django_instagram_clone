@@ -11,6 +11,8 @@ from rest_framework.views import APIView
 from django.contrib.auth.models import User
 from rest_framework import generics, mixins
 
+from .serializers import NetworkEdgeFollowingsSerializer, NetworkEdgeFollowersSerializer
+
 # Create your views here.
 
 @api_view(['POST'])
@@ -172,7 +174,11 @@ class UserProfileDetail(APIView):
         return Response(response, status=status.HTTP_200_OK)
 
 
-class UserNetworkEdgeView(mixins.CreateModelMixin, generics.GenericAPIView):
+# mixins.CreateModelMixin and mixins.DestroyModelMixin etc are being used for create, delete etc.
+class UserNetworkEdgeView(mixins.CreateModelMixin,
+                          mixins.DestroyModelMixin,
+                          mixins.ListModelMixin,
+                          generics.GenericAPIView):
     
     queryset = NetworkEdge.objects.all()    # this is the model we will be dealing with only
     serializer_class = NetworkEdgeSerializer    # and the serializer we are suppose be deal with only
@@ -180,14 +186,51 @@ class UserNetworkEdgeView(mixins.CreateModelMixin, generics.GenericAPIView):
     permission_classes = [IsAuthenticated, ]
     authentication_classes = [JWTAuthentication, ]
     
-    def get(self, request):
-        pass
+    # overriding this method to modify the default behaviour of using Serializer with GET
+    def get_serializer_class(self):
+        
+        if self.request.method == 'GET':
+            edge_direction = self.request.query_params.get('direction', '')
+            if edge_direction == "followers":
+                return NetworkEdgeFollowersSerializer
+            elif edge_direction == "followings":
+                return NetworkEdgeFollowingsSerializer
+            
+        return self.serializer_class
     
-    # below post will simply create and save a network model    
+    def get_queryset(self):
+        
+        queryset = self.queryset.all()  # Use .all() to avoid caching issues
+        
+        edge_direction = self.request.query_params.get('direction', '')
+        if edge_direction == "followers":
+            # NetworkEdge.objects.all().filter(to_user=self.request.user.profile.id)
+            return queryset.filter(to_user=self.request.user.profile)
+        elif edge_direction == "followings":
+            return queryset.filter(from_user=self.request.user.profile)
+        
+        return queryset
+    
+    def get(self, request, *args, **kwargs):
+        
+        return self.list(request, *args, **kwargs)
+    
+    # below post will simply create and save a network model
     def post(self, request, *args, **kwargs):
+        # We will implement it using serializer context object later
+        request.data['from_user'] = request.user.profile.id
         return self.create(request, *args, **kwargs)
     
-    def delete(self, request):
-        pass
+    def delete(self, request, *args, **kwargs):
+        
+        # mind here request.user.profile.id
+        required_edge = NetworkEdge.objects.filter(to_user=request.data['to_user'], from_user=request.user.profile.id)
+        if required_edge.exists():
+            required_edge.delete()
+            message = "Edge deleted."
+        else:
+            message = "No edge found!!"     
+        
+        return Response({"data":None, "message":message}, status=status.HTTP_200_OK)
     
     

@@ -57,8 +57,24 @@ class UserProfileUpdateSerializer(ModelSerializer):
         fields = ('first_name', 'last_name', 'bio', 'profile_pic_url', )
         
 class NetworkEdgeSerializer(ModelSerializer):
-    
+    # from_user = UserProfileViewSerializer()
+    # to_user = UserProfileViewSerializer()
     class Meta:
         model = NetworkEdge
         fields = ("from_user", "to_user", )
-                
+
+
+class NetworkEdgeFollowersSerializer(ModelSerializer):
+    
+    from_user = UserProfileViewSerializer()
+    class Meta:
+        model = NetworkEdge
+        fields = ("from_user", )
+        
+        
+class NetworkEdgeFollowingsSerializer(ModelSerializer):
+    
+    to_user = UserProfileViewSerializer()
+    class Meta:
+        model = NetworkEdge
+        fields = ("to_user", )

@@ -23,7 +23,10 @@ class NetworkEdge(AbstractTimeStamp):
     
     from_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name = "followings")
     
-    to_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name = "followers") 
+    to_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name = "followers")
+    
+    class Meta:
+        unique_together = ('from_user', 'to_user')
         
 # Example below
 # from_user  to_user
