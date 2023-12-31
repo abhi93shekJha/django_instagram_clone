@@ -1,3 +1,4 @@
-media/
-staticfiles/
+media/*
+staticfiles/*
 *.pyc
+config/settings_local.py

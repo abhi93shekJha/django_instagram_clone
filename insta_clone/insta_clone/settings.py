@@ -84,16 +84,22 @@ WSGI_APPLICATION = 'insta_clone.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'abhishek',  # database name
-        'USER': 'abhishek',   # user name
-        'PASSWORD': 'abhishek', # password
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
-}
+try:
+    from config.settings_local import DATABASES_LOCAL
+    DATABASES = {}
+    DATABASES.update(DATABASES_LOCAL)
+except ImportError:
+    pass    
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'xyz',  # database name
+#         'USER': 'xyz',   # user name
+#         'PASSWORD': 'xyz', # password
+#         'HOST': 'localhost',
+#         'PORT': '5432'
+#     }
+# }
 
 
 # Password validation
