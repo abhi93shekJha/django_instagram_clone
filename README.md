@@ -1,6 +1,6 @@
 # Django Instagram Clone ([Notes link](django_notes/dango_basics.md))
 
-### All the notes are written in simple terms for better explaination.
+### I have written all the notes in simple terms for better explaination.
 
 ## Overview
 
