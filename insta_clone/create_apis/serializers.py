@@ -27,11 +27,18 @@ class UserViewSerializer(ModelSerializer):
 class UserProfileViewSerializer(ModelSerializer):
     
     user = UserViewSerializer()     # this object creates a json inside the outer json
-    
+    followers_count = serializers.SerializerMethodField()   # this will automatically call get_followers_count()
+    followings_count = serializers.SerializerMethodField()   # and this will call get_followings_count()
     class Meta:
         model = UserProfile
         # this will give all the field except what is excluded
         exclude = ('is_verified',)
+    
+    def get_followers_count(self, obj):
+        return obj.followers.count()    # we should keep count in Database for bigger projects
+    
+    def get_followings_count(self, obj):
+        return obj.followings.count()
         
 class UserProfileUpdateSerializer(ModelSerializer):
     

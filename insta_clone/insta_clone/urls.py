@@ -43,6 +43,8 @@ urlpatterns = [
     # to create login api, we only need to add this line. It is using the User object by django.contrib.auth.models under the hood
     # It expects username and password and sends back refresh token and access token
     path('login/', TokenObtainPairView.as_view(), name='login_api'),
+    
+    path('post/', include('content.urls')),
 ]
 
 
