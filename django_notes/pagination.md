@@ -6,3 +6,5 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 2
 }
 ```
+- Provides us two query parameters.
+- Example - http://127.0.0.1:8000/post/?offset=0&limit=1
