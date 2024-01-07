@@ -8,3 +8,4 @@ REST_FRAMEWORK = {
 ```
 - Provides us two query parameters.
 - Example - http://127.0.0.1:8000/post/?offset=0&limit=1
+- offset is from where to start, and limit is how many results we want.
