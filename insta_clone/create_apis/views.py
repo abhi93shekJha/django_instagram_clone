@@ -132,7 +132,7 @@ class UserProfileDetail(APIView):
             response_data["data"] = serializer.data
             status_code = status.HTTP_200_OK
         else:
-            response_data['error'] = "User does not exist!!"   
+            response_data['error'] = "User does not exist!!"
             status_code = status.HTTP_404_NOT_FOUND
         
         return Response(response_data, status=status_code)
@@ -229,7 +229,7 @@ class UserNetworkEdgeView(mixins.CreateModelMixin,
             required_edge.delete()
             message = "Edge deleted."
         else:
-            message = "No edge found!!"     
+            message = "No edge found!!"
         
         return Response({"data":None, "message":message}, status=status.HTTP_200_OK)
     

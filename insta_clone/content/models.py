@@ -3,8 +3,8 @@ from create_apis.models import AbstractTimeStamp, UserProfile
 
 # Steps are,
 # 1. We create a post without any content and send back the post id.
-# 2. We use the post id, and sequence_index and media file to upload the post.
-# 3. Update the post and publish
+# 2. Frontend will now upload the media, for which request will send post id, and sequence_index and media file to upload the post.
+# 3. Update the post and publish, as soon as the user submits the post.
 
 # Create your models here.
 class UserPost(AbstractTimeStamp):
@@ -35,3 +35,5 @@ class PostMedia(AbstractTimeStamp):
     
     class Meta:
         unique_together = ('sequence_index', 'post')
+    
+        
