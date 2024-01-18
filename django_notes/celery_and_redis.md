@@ -72,3 +72,9 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 - This will start running specified task every minute(according to above setting).
 - django_celery_beat_periodictasks table will show the periodic tasks running and django_celery_results_taskresult
 table will store the task results.
+
+### In a nutshell, we can say,
+- Redis stores and manages the task queue. It facilitates communication between celery app and workers.
+- Celery app sends, receives and coordinates the tasks and communicates the tasks to the worker.
+- Celery provides celery workers, that process the tasks which we start with 'celery' command.
+- Celery-beat schedules the tasks after the specified time interval.
