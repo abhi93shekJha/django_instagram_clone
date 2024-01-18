@@ -36,4 +36,5 @@ class PostMedia(AbstractTimeStamp):
     class Meta:
         unique_together = ('sequence_index', 'post')
     
-        
+    
+    

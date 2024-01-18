@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,6 +37,8 @@ INSTALLED_APPS = [
     'content',
     'create_apis',
     'users',
+    'django_celery_beat',
+    'django_celery_results',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+CELERY_RESULT_BACKEND = 'django-db'
 
 if DEBUG:
     SIMPLE_JWT = {
@@ -155,3 +160,11 @@ MEDIA_URL = ''
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CELERY_BEAT_SCHEDULE = {
+    "sum_two_numbers_beat":{
+        "task": "sum_two_numbers",
+        "schedule": crontab(minute="*/1"),
+        "args": (2, 3)
+    }
+}
