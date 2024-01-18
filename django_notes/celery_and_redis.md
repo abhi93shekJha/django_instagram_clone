@@ -33,7 +33,7 @@ asynchronously. Implemented here????.
 - pip install django-celery-results , helps save the result from celery to database.
 - pip install redis
 
-### Steps to implement Celery with Reddis
+### Steps to implement Celery with Redis
 - Add 'django_celery_beat', django_celery_results' in INSTALLED_APPS in settings.py of project.
 - Run migrations. This will create few new tables in DB.
 - Now we will install Redis and store our celery tasks there.
