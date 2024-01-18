@@ -9,7 +9,7 @@ Welcome to the Django Instagram Clone project! This project is designed to showc
 ### Server Side Rendering [Explained here](django_notes/django_forms_ServerSideRendering.md)
 
 - Utilizes Django forms created using HTML and CSS.
-- Created Instagram signup page.
+- Created dummy Instagram signup page.
 
 ### Django Rest Framework (DRF) Application [Explained here](django_notes/api_notes.md)
 
