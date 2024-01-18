@@ -36,18 +36,17 @@ asynchronously. Implemented here????.
 ### Steps to implement Celery with Redis
 - Add 'django_celery_beat', django_celery_results' in INSTALLED_APPS in settings.py of project.
 - Run migrations. This will create few new tables in DB.
-- Now we will install Redis and store our celery tasks there.
+- Now we will install Redis (to store our celery tasks there).
 - Start Redis server.
 - Create celery.py in project module.
-- Celery will need Django settings, in order to instantiate django app, to use models from the app in celery tasks.
-- Implementing the above info in celery.py at line 4.
+- Celery will need Django settings, in order to instantiate django app, to use models from the app in celery tasks. This is implemented in celery.py at line 4.
 - Rest of the celery configurations are present and explained here ????.
 - Next we will create tasks.py in my application. We will write functions(tasks that will run asynchornously),
 and annotate it with @app.task(name="task_name").
 - We can have multiple parameters inside task function, such as, Task.name, Task.request, Task.max_tries etc.
 - Add a configuration in settings.py i.e. CELERY_RESULT_BACKEND = 'django-db'.
 - Command to run celery - celery -A(name of project) insta_clone worker(the actual task we will be executing) -l(level of logging) info/warning/debug -f(where celery logs should be stored) celery.logs
-- When running the function as task_function.delay(), using shell, it will run asynchronously.
+- When running the function as task_function.delay(fun_params), using shell, it will run asynchronously.
 - Database django_celery_results_taskresult table gets filled by result and other informations.
 - We should always restart the celery server, when updating or creating a task.
 - We should not use print statement inside tasks but instead look into celery logger for debugging.
