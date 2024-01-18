@@ -8,7 +8,7 @@ The above tasks should happen asynchronously in near real time, and the actual t
 should not be hampered by the above tasks.
 For example, if a user is creating post, modification of images should not happen linearly, as it may lead to 
 failure of post creation. If it fails asynchronously(let's say we are making third party API call), 
-we would have a way to restart the task.
+we would should a way to restart the task.
 - Celery helps achieve this.
 - It is a task queue, with real time processing. It also does task scheduling.
 - It helps in distributing tasks among multiple workers to process task parallely.
