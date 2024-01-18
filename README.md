@@ -1,4 +1,4 @@
-# Django Instagram Clone ([Notes link](django_notes/dango_basics.md))
+# Django Instagram Clone ([Explained here](django_notes/dango_basics.md))
 
 ### I have written these steps in simple terms to make it easier to understand and follow.
 
@@ -6,26 +6,44 @@
 
 Welcome to the Django Instagram Clone project! This project is designed to showcase the following features:
 
-### Server Side Rendering
+### Server Side Rendering [Explained here](django_notes/django_forms_ServerSideRendering.md)
 
 - Utilizes Django forms created using HTML and CSS.
-- [Notes link](django_notes/django_forms_ServerSideRendering.md)
+- Created Instagram signup page.
 
-### Django Rest Framework (DRF) Application
+### Django Rest Framework (DRF) Application [Explained here](django_notes/api_notes.md)
 
 - Implements DRF for enhanced functionality.
-- [Notes link](django_notes/api_notes.md)
 
-### User Authentication
+### User Authentication [Explained here](django_notes/login_notes.md)
 
 - Provides user registration and login functionalities.
 - Utilizes JSON Web Token (JWT) authentication for secure user authentication.
-- [Notes link](django_notes/login_notes.md)
 
-### User Data Management
+### User Data Management [Explained here](django_notes/follower_model_using_mixin.md)
 
-- Implements CRUD operations for user data.
-- Uses PostgreSQL as the underlying database.
+- Implements CRUD operations for user data using Generics and Mixins.
+- Allows users to follow/unfollow others.
+- Provides details on followers for a user.
+- Retrieves followers and following counts.
+- Uses Django ORM for all database interactions.
+
+### Post Management
+
+- Enables CRUD operations for posts.
+- Utilizes two tables for posts and multimedia.
+- For creating posts, an empty row with `is_published` set to False is initially returned from the post table.
+- Multimedia is uploaded separately, and upon posting, the remaining text is added, and `is_published` is set to True.
+- [Added Pagination](django_notes/pagination.md)
+
+### Object Level Permissions [Explained here](django_notes/permissions_django.md)
+
+### Asynchronous Tasks with Celery and Redis [Explained here](django_notes/celery_and_redis.md)
+
+- Configured Celery app for running tasks asynchronously.
+- Utilizes Redis as a message broker for task queue management.
+- Configured Celery Beat for scheduling periodic tasks.
+
 
 
 ## Setup Instructions
