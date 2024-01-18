@@ -36,7 +36,7 @@ Welcome to the Django Instagram Clone project! This project is designed to showc
 - Multimedia is uploaded separately, and upon posting, the remaining text is added, and `is_published` is set to True.
 - [Added Pagination](django_notes/pagination.md)
 
-### Object Level Permissions [Explained here](django_notes/permissions_django.md)
+### Added Object Level Permissions for delete [Explained here](django_notes/permissions_django.md)
 
 ### Asynchronous Tasks with Celery and Redis [Explained here](django_notes/celery_and_redis.md)
 
