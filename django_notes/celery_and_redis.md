@@ -23,6 +23,7 @@ or a machine).
 - It keeps the data in RAM and hence is extremely fast and used as Cache for achieving low latency.
 - It can be used as a broker as well.
 - It is designed to be used in distributed system allowing horizontal scaling.
+- Here we won't have to write commands for Redis, we can simply install and start the server and django will use Redis under the hood as broker to carry tasks to workers.
 
 ### Installation of Celery and Redis
 - pip install celery
@@ -49,3 +50,26 @@ and annotate it with @app.task(name="task_name").
 - When running the function as task_function.delay(), using shell, it will run asynchronously.
 - Database django_celery_results_taskresult table gets filled by result and other informations.
 - We should always restart the celery server, when updating or creating a task.
+- We should not use print statement inside tasks but instead look into celery logger for debugging.
+- Implemented a task here?????
+
+### Configuring celery beat
+- This will schedule a task to run asynchronously after a specific time interval. It provides the task to worker (Celery app here) after specified amount of time. We specify the time interval when configuring in settings.py. Below is the configuration,
+```python
+CELERY_BEAT_SCHEDULE = {
+    "sum_two_numbers_beat":{
+        "task": "sum_two_numbers",   # name of the task specified in tasks.py, not method name
+        "schedule": crontab(minute="*/1"),
+        "args": (2, 3)
+    }
+}
+```
+- Django will look for celery setting with prefix "CELERY" as we specified when configuring celery app using
+app.config_from_object('django.conf:settings', namespace='CELERY')
+- We are currently using defaul time zone as UTC, we can set a different time zone wherever our server is located.
+- There are multiple ways to schedule a task, with the help of time, or sunrise, sunset etc.
+- Start celery beat server using "celery -A insta_clone beat".
+- We will also have to start celery server as this is the worker celery beat will provide the task to.
+- This will start running specified task every minute(according to above setting).
+- django_celery_beat_periodictasks table will show the periodic tasks running and django_celery_results_taskresult
+table will store the task results.
