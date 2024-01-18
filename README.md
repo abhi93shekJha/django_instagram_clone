@@ -1,10 +1,11 @@
-# Django Instagram Clone ([Explained here](django_notes/dango_basics.md))
+# Django Instagram Clone
 
 ### I have written these steps in simple terms to make it easier to understand and follow.
 
-## Overview
+## Overview 
 
 Welcome to the Django Instagram Clone project! This project is designed to showcase the following features:
+([Django basics explained here](django_notes/dango_basics.md))
 
 ### Server Side Rendering [Explained here](django_notes/django_forms_ServerSideRendering.md)
 
