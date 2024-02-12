@@ -9,6 +9,23 @@
 - Application programming interface. Provides an interface for a user to use.
 - It lets a user use the functionalities of a framework, kept as library, in a controlled manner.
 - Easy example for an API would be, an exposed public method, that has multiple private methods hidden from user.
+### HTTP and REST APIs:
+### HTTP
+- Hypertext Transfer Protocol (HTTP) is a set of rules followed by client and server to communicate over internet.
+- It contains hypertext (texts with hyperlinks) clicking on which takes to other resources.
+- It is an stateless protocol, meaning the state of the older request is not saved in the server and every request is treated independent of each other by the server.
+- This makes server scalable, as it do not have to deal with the complexity of saving previous states of the client.
+- It makes use of HTTP methods such as GET, PUT, POST, DELETE.
+- HTTPS (Hypertext Transfer Protocol Secure) is an extension of HTTP which encrypts the communication using SSL.
+### REST
+- REST (Representation State Transfer) APIs is a set of principal that uses HTTP in its implementation. (It is not a protocol, but simply rules that uses HTTP, so basically it is an HTTP protocol).
+- So, we can have HTTP requests that are not REST (for ex. A messaging application, which do not use URI, and do not use any of the HTTP methods like GET, POST, PUT, DELETE and uses its own custom methods).
+- It is used for designing networked application (think about an android application, communicating with backend server).
+- It is an stateless client-server communication.
+- It uses HTTP methods (GET, PUT, POST, DELETE) to work upon resouces.
+- Resource in a RESP API is identified by unique URI and represented by JSON, XML etc.
+- It used HTTP methods and HTTP status and its structure is consistent.
+- Ex. GET api/v1/movies/{id}, Ex. POST api/v1/movie (and json body)
 ### MVT
 - Django is a Model, View and Template framework.
 - Model keeps data to interact with database.
