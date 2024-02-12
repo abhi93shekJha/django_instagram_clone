@@ -22,6 +22,7 @@
 - So, we can have HTTP requests that are not REST (for ex. A messaging application, which do not use URI, and do not use any of the HTTP methods like GET, POST, PUT, DELETE and uses its own custom methods).
 - It is used for designing networked application (think about an android application, communicating with backend server).
 - It is an stateless client-server communication.
+- The downside of it being stateless is, the request body can become very heavy, in case of a complex project, making it a little slow (specially in case of limited bandwidth (limited amount of data can be transfered) or slow network).
 - It uses HTTP methods (GET, PUT, POST, DELETE) to work upon resouces.
 - Resource in a RESP API is identified by unique URI and represented by JSON, XML etc.
 - It used HTTP methods and HTTP status and its structure is consistent.
