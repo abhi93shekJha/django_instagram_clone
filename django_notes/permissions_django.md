@@ -6,8 +6,8 @@
 - An authorization permission is set using "IsAuthorized" that makes it mandatory for client to
 - request using token in header for accessing or action on a resource.
 - There is a need to call self.check_object_permissions(request, obj) in order to run permission logic(implemented below) if using class based views (by subclassing APIView),
-- When using generic views, it is called implicitly in get_object method (no need for use to call).
-- It is implemented so that a different user is not be allowed to delete the post or comment of an another user.
+- When using GenericViews, it is called implicitly in get_object method (no need for us to call).
+- It is implemented so that a different user is not allowed to delete the post or comment of an another user.
 - Although user interface won't allow it, but it should also not be done from API (using postman etc.).
 - Below is the code for applying custom permission when modifying an object,
 ```python
