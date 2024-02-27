@@ -78,7 +78,7 @@ pip install -r requirements.txt
 - Copy your settings_local.py file into the 'config' folder.
 - File structure is shown below.
 ```json
-DATABASES_LOCAL = {
+'DATABASES_LOCAL' = {
 'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',   # you can use your own database
     'NAME': 'data_base name',      # database name
