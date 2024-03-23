@@ -65,7 +65,7 @@ user = User()
 user.name = "Abhishek"    # Add value
 user.save()    # save value to a row
 
-user_profile = UserProfile(bio = "Aiming from becoming a good developer", user=user)   # using
+user_profile = UserProfile(bio = "Aiming for becoming a good developer", user=user)   # using
 user_profile.save()
 
 # get value out of table
