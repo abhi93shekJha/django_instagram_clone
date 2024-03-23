@@ -24,7 +24,7 @@
 - It is an stateless client-server communication.
 - The downside of it being stateless is, the request body can become very heavy, in case of a complex project, making it a little slow (specially in case of limited bandwidth (limited amount of data can be transfered) or slow network).
 - It uses HTTP methods (GET, PUT, POST, DELETE) to work upon resouces.
-- Resource in a RESP API is identified by unique URI and represented by JSON, XML etc.
+- Resource in a REST API is identified by unique URI and represented by JSON, XML etc.
 - It used HTTP methods and HTTP status and its structure is consistent.
 - Ex. GET api/v1/movies/{id}, Ex. POST api/v1/movie (and json body)
 ### MVT
