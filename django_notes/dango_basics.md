@@ -4,7 +4,7 @@
 - Example - Ease with database connectivity, easy handling of request response cycle, help with user authentication.
 - A framework can also be manipulated but should be done by an expert.
 ### Library:
-- These are the astract code that a framework keeps to expose it's functionality via an API.
+- These are the abstract code that a framework keeps to expose it's functionality via an API.
 ### API:
 - Application programming interface. Provides an interface for a user to use.
 - It lets a user use the functionalities of a framework, kept as library, in a controlled manner.
