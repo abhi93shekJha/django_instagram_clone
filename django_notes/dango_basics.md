@@ -78,7 +78,7 @@ for user in user_list:
 user_obj = User.objects.get(pk=1)   # pk is automatically created
 print(user_obj.name)   # prints "Abhishek"
 
-# use filter always, do not throw execption. It ruturns multiple objects
+# use filter always, do not throw execption. It returns multiple objects
 # exists() method for checking if the row exists, or len() for same case. exist() is faster.
 User.objects.filter()   # gives all the rows
 User.objects.filter(pk=1)  # give one row
